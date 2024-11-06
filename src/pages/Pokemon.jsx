@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
- 
+import { Link } from "react-router-dom";
+import Image from '../assets/images/pokemon.png';
+import Gif from "../assets/images/animate.gif";
+
+
 export default function Pokemon() {
   const [pokemon, setPokemon] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
- 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -12,14 +16,14 @@ export default function Pokemon() {
           "https://pokeapi.co/api/v2/pokemon?limit=100"
         );
         const data = await response.json();
- 
+
         const pokemonDatas = await Promise.all(
           data.results.map(async (poke) => {
             const pokeResponse = await fetch(poke.url);
             return pokeResponse.json();
           })
         );
- 
+
         setPokemon(pokemonDatas);
         setLoading(false);
       } catch (error) {
@@ -28,12 +32,12 @@ export default function Pokemon() {
         setLoading(false);
       }
     };
- 
+
     fetchData();
   }, []);
- 
+
   if (loading) {
-    return <div className="text-center text-xl">Loading...</div>;
+    return <div className="flex justify-center items-center h-screen"><img src={Gif} alt="" /></div>;
   }
   if (error) {
     return (
@@ -42,30 +46,40 @@ export default function Pokemon() {
       </div>
     );
   }
- 
+
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold text-center mb-4">Pokémon List</h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="flex justify-center mb-6">
+        <img src={Image} alt="Pokémon Logo" className="w-64" />
+      </div>
+      
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {pokemon.map((poke) => (
-          <div key={poke.name} className="card bg-base-200 shadow-xl">
-            <figure>
+          <div key={poke.name} className="bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl shadow-lg  relative transform transition duration-500 hover:scale-105">
+            {/* Header Kartu */}
+            <div className="w-full h-20 bg-indigo-800 rounded-t-xl relative">
               <img
                 src={poke.sprites.front_default}
                 alt={poke.name}
-                className="w-32 h-32 mx-auto my-2"
+                className="w-32 h-32 absolute  left-1/2 transform -translate-x-1/2"
               />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">
-                {poke.name.charAt(0).toUpperCase() + poke.name.slice(1)} B
-              </h2>
-              <a
-                href={`https://pokeapi.co/api/v2/pokemon/${poke.name}`}
-                className="btn btn-primary"
+            </div>
+
+            {/* Informasi Pokémon */}
+            <div className="p-6 text-white">
+              <h1 className="text-2xl font-bold mb-2">
+                {poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}
+              </h1>
+              <p className="text-lg">Type: {poke.types[0].type.name}</p>
+              <p className="text-sm text-gray-200 mt-2">
+                Pokémon bertipe {poke.types[0].type.name}.
+              </p>
+              <Link
+                to={`/pokemon_detail/${poke.name}`}
+                className="mt-4 inline-block px-4 py-2 bg-yellow-400 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-yellow-500 transition duration-300"
               >
                 View Details
-              </a>
+              </Link>
             </div>
           </div>
         ))}
@@ -73,5 +87,3 @@ export default function Pokemon() {
     </div>
   );
 }
- 
- 

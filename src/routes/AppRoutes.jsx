@@ -9,6 +9,7 @@ import Login from "../pages/Login";
 import Pokemon from "../pages/Pokemon";
 import Pertemuan2 from "../pages/Pertemuan2";
 import Pertemuan3 from "../pages/Pertemuan3";
+import PokemonDetail from "../pages/PokemonDetail";
 
 const AppRoutes = () => {
   return (
@@ -22,6 +23,7 @@ const AppRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/pertemuan2" element={<Pertemuan2 />} />
         <Route path="/pertemuan3" element={<Pertemuan3 />} />
+        <Route path="/pokemon_detail/:name" element={<PokemonDetail />} />
       </Route>
     </Routes>
   );
