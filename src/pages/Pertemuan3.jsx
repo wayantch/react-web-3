@@ -18,7 +18,6 @@ const Pertemuan3 = () => {
 
   return (
     <>
-    <Navbar />
       <h1>Ini Timere {count}</h1>
     </>
   );

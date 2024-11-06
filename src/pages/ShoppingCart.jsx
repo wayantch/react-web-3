@@ -20,7 +20,7 @@ const ShoppingCart = () => {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-100 p-5">
+    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 p-5">
       <h1 className="text-2xl font-bold mb-5 text-blue-600">Shopping Cart</h1>
 
       <form onSubmit={addItem} className="w-80 bg-white p-4 rounded shadow-md mb-5">
@@ -61,7 +61,7 @@ const ShoppingCart = () => {
               className="flex justify-between bg-gray-100 p-2 mb-2 rounded"
             >
               <span>{item.name}</span>
-              <span>${item.price.toFixed(2)}</span>
+              <span>Rp {item.price.toFixed(2)}</span>
             </li>
           ))}
         </ul>

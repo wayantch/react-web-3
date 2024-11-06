@@ -52,7 +52,6 @@ const Pertemuan2 = () => {
 
     return (
         <div>
-            <Navbar />
             <h1>{user.name}</h1>
             <img
                 src={user.imageUrl}

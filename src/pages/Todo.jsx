@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom"; 
 import Navbar from "../components/Navbar";
 import Form from "../components/Form";
 
@@ -12,8 +12,7 @@ const Todo = () => {
 
   return (
     <>
-      <Navbar />
-      <div className="flex flex-col items-center min-h-screen bg-gray-100">
+      <div className="flex flex-col min-h-screen justify-center items-center ">
         <div className="mt-10 w-80">
           {/* Width set to 300px */}
           <Form addTask={addTask} />
