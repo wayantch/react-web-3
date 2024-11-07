@@ -12,7 +12,6 @@ const Login = () => {
     setError(null);
 
     if (email === 'admin' && password === 'admin') {
-      // Simulasi waktu loading
       setTimeout(() => {
         setLoading(false);
         window.location.href = '/'; 
