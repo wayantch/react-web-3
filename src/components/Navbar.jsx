@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 const Navbar = () => {
   return (
@@ -66,6 +67,9 @@ const Navbar = () => {
           <li>
             <a><Link to='/pokemon'>Pokemon</Link></a>
           </li>
+           <li>
+            <ThemeSwitcher />
+           </li>
         </ul>
       </div>
       <div className="navbar-end">

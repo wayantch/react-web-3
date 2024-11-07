@@ -2,18 +2,20 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Image from '../assets/images/pokemon.png';
 import Gif from "../assets/images/animate.gif";
+import ThemeContext from "../context/ThemeContext";
 
 
 export default function Pokemon() {
   const [pokemon, setPokemon] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  // const [theme, toggleTheme] = useState(ThemeContext);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://pokeapi.co/api/v2/pokemon?limit=100"
+          "https://pokeapi.co/api/v2/pokemon?limit=20"
         );
         const data = await response.json();
 
@@ -52,7 +54,7 @@ export default function Pokemon() {
       <div className="flex justify-center mb-6">
         <img src={Image} alt="Pokémon Logo" className="w-64" />
       </div>
-      
+      {/* <button className="btn btn-primary" onClick={toggleTheme} > {theme}</button> */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {pokemon.map((poke) => (
           <div key={poke.name} className="bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl shadow-lg  relative transform transition duration-500 hover:scale-105">
